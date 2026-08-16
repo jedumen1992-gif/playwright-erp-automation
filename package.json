@@ -1,0 +1,27 @@
+{
+  "name": "playwright-erp-automation",
+  "version": "1.0.0",
+  "description": "Portafolio profesional de automatización de pruebas con Playwright sobre un ERP desarrollado en PHP.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jedumen1992-gif/playwright-erp-automation.git"
+  },
+  "keywords": [],
+  "author": "Jose mendez",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jedumen1992-gif/playwright-erp-automation/issues"
+  },
+  "homepage": "https://github.com/jedumen1992-gif/playwright-erp-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  }
+}
