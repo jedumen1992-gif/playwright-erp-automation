@@ -1,15 +1,15 @@
-const { test } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 
-test('Abrir Google y hacer clic', async ({ page }) => {
+test('Buscar elemento', async ({ page }) => {
 
     await page.goto('https://www.google.com');
 
     const buscador = page.getByRole('combobox');
 
+    await expect(buscador).toBeVisible();
+
     await buscador.fill('Playwright');
 
-    await buscador.press('Enter');
-
-    await page.waitForTimeout(2000);
+    await expect(buscador).toHaveValue('Playwright');
 
 });
