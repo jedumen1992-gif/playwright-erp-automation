@@ -1028,6 +1028,39 @@ El último ejercicio completado fue:
 Test 6 - Localizar Configuraciones
 ```
 
+No volver a instalar Git, Node.js, npm ni Playwright salvo que el alumno lo solicite.
+---
+
+## ✅ Test 07 - Selectores robustos con data-testid
+
+**Fecha:** 2026-09-12  
+**Archivo:** `tests/septimo_test.spec.js`  
+**URL probada:** http://localhost/sysayg/index.php
+
+### 🎯 Objetivo
+Reemplazar selectores frágiles (placeholder, texto, clases CSS) por atributos `data-testid`, que no se rompen si cambia el diseño, el texto o los estilos.
+
+### 🧠 Conceptos aprendidos
+- Uso de `page.getByTestId()` en Playwright.
+- Añadir atributos `data-testid` al HTML del ERP.
+- En menús dinámicos generados en bucle PHP, construir el `data-testid` con un slug derivado del nombre.
+- Distinguir entre módulos (`modulo-*`) y páginas (`menu-*`) en el sidebar.
+- Escribir un caso negativo (login fallido) además del positivo.
+- Configurar `playwright.config.js` con `slowMo` para depuración visual.
+
+### 🛠️ Cambios aplicados en el ERP (`sysayg`)
+- **`index.php`**: se añadieron `data-testid` a usuario, contraseña y botón de login.
+- **`tools/aside.php`**: se añadió `data-testid` dinámico:
+  - Módulos: `modulo-<slug>` (ej. `modulo-configuraciones`)
+  - Páginas: `menu-<slug>` (ej. `menu-usuarios`)
+
+### 🧪 Casos cubiertos
+1. **Positivo**: login con credenciales válidas → verifica redirección a `menu.php` y visibilidad de módulos.
+2. **Negativo**: login con credenciales inválidas → verifica que NO redirige y aparece alerta SweetAlert2.
+
+### ▶️ Comando de ejecución
+```bash
+npx playwright test tests/septimo_test.spec.js --headed
 Se utilizó:
 
 ```javascript
