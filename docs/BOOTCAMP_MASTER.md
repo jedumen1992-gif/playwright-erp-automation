@@ -1144,3 +1144,66 @@ Se usó `page.waitForTimeout()` en los tests **solo para observación en clase**
 ### ▶️ Comando de ejecución
 ```bash
 npx playwright test tests/octavo_test.spec.js --headed
+
+---
+
+## ✅ Test 09 - Page Object Model (POM)
+
+**Fecha:** 2026-09-15  
+**Archivos:** 
+- `pages/LoginPage.js` (nuevo)
+- `pages/MenuPage.js` (nuevo)
+- `tests/noveno_test.spec.js` (nuevo)
+
+### 🎯 Objetivo
+Refactorizar los tests aplicando el patrón de diseño **Page Object Model (POM)**, separando la lógica de las páginas de la lógica de los tests.
+
+### 🧠 Conceptos aprendidos
+- **POM (Page Object Model)**: patrón donde cada página del sistema se representa con una clase que encapsula sus selectores y acciones.
+- **Constructor**: método que se ejecuta al crear un objeto y guarda los locators como propiedades.
+- **Métodos de acción**: funciones dentro de la clase que realizan acciones (login, goto, verificar).
+- **`module.exports`**: exportar la clase para usarla con `require()` en otros archivos.
+- **`require('../pages/X')`**: importar clases desde carpetas hermanas.
+- **Separación de responsabilidades**: tests = qué probar; pages = cómo interactuar con la UI.
+
+### 🛠️ Estructura creada
+playwright-erp-automation/
+├── pages/
+│ ├── LoginPage.js ← clase del login
+│ └── MenuPage.js ← clase del menú
+└── tests/
+└── noveno_test.spec.js ← test que usa las clases
+
+text
+
+### 📋 Ejemplo comparativo
+
+**Antes (Test 07):**
+```javascript
+await page.goto('http://localhost/sysayg/index.php');
+await page.getByTestId('login-username').fill('admin');
+await page.getByTestId('login-password').fill('123');
+await page.getByTestId('login-submit').click();
+await expect(page).toHaveURL(/menu\.php/);
+Después (Test 09 con POM):
+
+javascript
+const loginPage = new LoginPage(page);
+await loginPage.goto();
+await loginPage.login('admin', '123');
+await expect(page).toHaveURL(/menu\.php/);
+🧪 Casos cubiertos
+Login usando LoginPage.
+
+Verificar módulos visibles usando MenuPage.
+
+Navegar al menú usando ambas clases.
+
+▶️ Comando de ejecución
+bash
+npx playwright test tests/noveno_test.spec.js --headed
+✅ Resultado
+4 tests passed (1 setup + 3 tests).
+
+💼 Valor para el portfolio
+El POM es el patrón de diseño más pedido en ofertas de QA Automation. Dominarlo demuestra madurez técnica.
