@@ -1108,3 +1108,39 @@ No se debe repetir un concepto que ya fue completado, salvo que sea necesario pa
 Cuando un test ya funciona, se debe tomar como referencia antes de realizar cambios en pruebas posteriores.
 
 Las ejecuciones en modo `headed` deben mantener pausas suficientes para que el alumno pueda observar la ejecución en pantalla.
+---
+
+## ✅ Test 08 - Reutilización de sesión con storageState
+
+**Fecha:** 2026-09-14  
+**Archivos:** 
+- `tests/auth.setup.js` (setup de login)
+- `tests/octavo_test.spec.js` (tests que reutilizan la sesión)
+- `playwright.config.js` (configuración de proyectos: setup + chromium)
+
+### 🎯 Objetivo
+Evitar repetir el login en cada test, guardando la sesión una sola vez y reutilizándola en todos los tests posteriores.
+
+### 🧠 Conceptos aprendidos
+- **Fixtures de Playwright**: código de preparación (setup) que se ejecuta antes de los tests.
+- **`storageState`**: mecanismo de Playwright para guardar y reutilizar cookies, localStorage y sessionStorage.
+- **Proyectos en `playwright.config.js`**: separar un proyecto `setup` que corre primero, y un proyecto `chromium` que depende de él (`dependencies: ['setup']`).
+- **`testMatch`**: filtro para que un proyecto solo ejecute ciertos archivos.
+- **Renombrar en destructuring JS**: `const { test: setup } = require(...)` (con `:` en JS, no con `as`).
+
+### 🛠️ Archivos creados/modificados
+- **Nuevo** `tests/auth.setup.js`: hace login, verifica URL y guarda sesión en `playwright/.auth/user.json`.
+- **Nuevo** `tests/octavo_test.spec.js`: 2 tests que abren `menu.php` directamente sin volver a loguearse.
+- **Modificado** `playwright.config.js`: se agregó proyecto `setup` + `storageState` + `dependencies`.
+- **Modificado** `.gitignore`: se agregó `/playwright/.auth/` para no subir la sesión a GitHub.
+
+### 🧪 Casos cubiertos
+1. Verificar que la sesión guardada permite entrar directo al menú sin login.
+2. Navegar al módulo de configuraciones sin re-autenticarse.
+
+### ⚠️ Mala práctica temporal
+Se usó `page.waitForTimeout()` en los tests **solo para observación en clase**. En proyectos reales debe evitarse porque hace lento el suite sin aportar valor funcional.
+
+### ▶️ Comando de ejecución
+```bash
+npx playwright test tests/octavo_test.spec.js --headed
