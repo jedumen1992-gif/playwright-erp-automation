@@ -6,3 +6,5 @@
 # Dependencies
 /node_modules/
 /playwright/.auth/
+# Variables de entorno
+.env

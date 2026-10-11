@@ -26,7 +26,7 @@ La enseñanza debe ser práctica, progresiva y orientada a situaciones reales de
 8. Mantener actualizadas las clases y este archivo.
 9. Cuando una solución ya funciona, no modificarla innecesariamente.
 10. Ante un error, partir primero de lo que ya fue comprobado y evitar adivinar selectores o soluciones.
-11. Las ejecuciones en modo `headed` deben incluir pausas para que el alumno pueda observar visualmente lo que Playwright está haciendo.
+11. Las ejecuciones en modo headed deben incluir pausas para que el alumno pueda observar visualmente lo que Playwright está haciendo.
 12. Priorizar el entendimiento del flujo antes de avanzar al siguiente concepto.
 
 ## Objetivo profesional
@@ -55,1155 +55,321 @@ El portafolio debe demostrar:
 
 ## Repositorio
 
-```text
 playwright-erp-automation
-```
 
-Remoto:
+Remoto: https://github.com/jedumen1992-gif/playwright-erp-automation
 
-```text
-https://github.com/jedumen1992-gif/playwright-erp-automation
-```
-
-Local:
-
-```text
-C:\Proyectos\playwright-erp-automation
-```
+Local: C:\Proyectos\playwright-erp-automation
 
 ## Estado actual
 
-Herramientas instaladas:
-
-- Git
-- Node.js
-- npm
-- Visual Studio Code
-- Playwright Test
-- Navegadores de Playwright
+Herramientas instaladas: Git, Node.js, npm, Visual Studio Code, Playwright Test, Navegadores de Playwright.
 
 ## Estructura actual aproximada
 
-```text
 playwright-erp-automation/
-
 ├── docs/
 │   ├── BOOTCAMP_MASTER.md
-│   ├── Clase01.md
-│   ├── Clase02.md
-│   ├── Clase03.md
-│   ├── Clase04.md
-│   ├── Clase05.md
-│   ├── Clase06.md
-│   ├── Clase07.md
-│   └── Clase08.md
-│
+│   ├── Clase01.md ... Clase08.md
 ├── node_modules/
-│
+├── pages/
+│   ├── LoginPage.js
+│   └── MenuPage.js
 ├── test-results/
-│
 ├── tests/
 │   ├── primer_test.spec.js
 │   ├── segundo_test.spec.js
 │   ├── tercer_test.spec.js
 │   ├── cuarto_test.spec.js
 │   ├── quinto_test.spec.js
-│   └── sexto_test.spec.js
-│
+│   ├── sexto_test.spec.js
+│   ├── septimo_test.spec.js
+│   ├── octavo_test.spec.js
+│   ├── noveno_test.spec.js
+│   └── decimo_test.spec.js
+├── .env
+├── .env.example
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
+├── playwright.config.js
 └── README.md
-```
 
 ## Conocimientos adquiridos
 
 ### QA Manual vs Automation
 
-Principio central:
+Principio central: El QA decide qué se debe probar; Playwright es la herramienta que ejecuta los pasos.
 
-> El QA decide qué se debe probar; Playwright es la herramienta que ejecuta los pasos.
-
-La automatización no reemplaza el pensamiento de QA.
-
-Primero se define qué comportamiento se quiere validar y después se decide cómo automatizarlo.
-
----
+La automatización no reemplaza el pensamiento de QA. Primero se define qué comportamiento se quiere validar y después se decide cómo automatizarlo.
 
 ### Git
 
-Comando conocido:
+Comandos usados: git --version, git status, git add, git commit, git push.
 
-```bash
-git --version
-```
-
-También se trabajó con:
-
-```bash
-git status
-git add
-git commit
-git push
-```
-
-Se aprendió el flujo básico:
-
-```text
-Modificar archivos
-      ↓
-git status
-      ↓
-git add
-      ↓
-git commit
-      ↓
-git push
-      ↓
-git status
-```
-
-Se verificó que después de subir los cambios aparezca:
-
-```text
-nothing to commit, working tree clean
-```
-
----
+Flujo: Modificar archivos → git status → git add → git commit → git push → git status.
 
 ### GitHub
 
-Repositorio:
+Repositorio: https://github.com/jedumen1992-gif/playwright-erp-automation
 
-```text
-https://github.com/jedumen1992-gif/playwright-erp-automation
-```
+### Node.js, npm, package.json, package-lock.json, node_modules
 
-Se aprendió a:
-
-- clonar un repositorio;
-- trabajar localmente;
-- realizar commits;
-- subir cambios con `git push`;
-- comprobar los cambios directamente en GitHub.
-
----
-
-### Node.js
-
-Node.js permite ejecutar JavaScript fuera del navegador.
-
----
-
-### npm
-
-npm administra paquetes y dependencias de Node.js.
-
----
-
-### package.json
-
-Describe el proyecto y sus dependencias.
-
----
-
-### package-lock.json
-
-Registra las versiones concretas de las dependencias instaladas.
-
----
-
-### node_modules
-
-Contiene las librerías instaladas.
-
-Normalmente no se sube a GitHub.
-
-Por eso se agregó:
-
-```text
-node_modules/
-```
-
-al archivo:
-
-```text
-.gitignore
-```
-
----
+Node.js ejecuta JavaScript fuera del navegador. npm administra paquetes. package.json describe el proyecto. package-lock.json registra versiones. node_modules contiene las librerías (no se sube a GitHub).
 
 ## Instalación de Playwright
 
-Se instaló Playwright Test mediante:
-
-```bash
 npm install -D @playwright/test
-```
-
-Después se instalaron los navegadores:
-
-```bash
 npx playwright install
-```
 
-## Error documentado
+## Conceptos de Playwright
 
-La primera ejecución de Playwright falló porque faltaban los ejecutables de los navegadores.
+- test: define una prueba
+- page: página controlada por Playwright
+- page.goto(): navega a una URL
+- await: espera a que termine una operación
+- Headless: sin ventana visible (npx playwright test)
+- Headed: con ventana visible (npx playwright test --headed)
 
-Playwright indicó:
+## Locators
 
-```bash
-npx playwright install
-```
+page.locator('input[placeholder="..."]')
+page.getByText('Inicio')
+page.getByRole('link', { name: 'CONFIGURACIONES' })
+page.getByTestId('login-username')
 
-Después de instalar los navegadores, el test pasó correctamente.
+## Acciones
 
-Este error quedó documentado como parte del aprendizaje real.
+- fill(): completa un campo
+- click(): hace clic
+- press(): presiona una tecla
 
----
+## Assertions
 
-# Conceptos de Playwright aprendidos
+- expect(x).toBeVisible()
+- expect(x).toHaveValue()
+- expect(page).toHaveURL(/menu\.php/)
+- expect(x).not.toHaveURL(...)
 
-## `test`
+## Filosofía de selectores
 
-Define una prueba automatizada.
+Preferir: texto visible, atributos específicos, placeholder, role, data-testid.
+Evitar: colores, posiciones, estilos, clases CSS cambiantes.
 
-Ejemplo:
+## Flujo de login del ERP
 
-```javascript
-test('Abrir página', async ({ page }) => {
-});
-```
-
----
-
-## `page`
-
-Representa la página o pestaña que Playwright controla.
-
----
-
-## `page.goto()`
-
-Permite navegar hacia una dirección.
-
-Ejemplo:
-
-```javascript
-await page.goto('https://www.google.com');
-```
-
-En el ERP:
-
-```javascript
-await page.goto('http://localhost/sysayg/');
-```
-
----
-
-## `await`
-
-Indica que Playwright debe esperar a que una operación termine antes de continuar.
-
-Ejemplo:
-
-```javascript
-await page.goto('http://localhost/sysayg/');
-```
-
----
-
-## Modo headless
-
-El navegador se ejecuta sin mostrar visualmente la ventana.
-
-Ejemplo:
-
-```bash
-npx playwright test
-```
-
----
-
-## Modo headed
-
-Permite observar el navegador mientras se ejecuta la prueba.
-
-Ejemplo:
-
-```bash
-npx playwright test --headed
-```
-
-Durante el bootcamp se utiliza frecuentemente `--headed` para poder observar visualmente cada ejecución.
-
-Las pruebas deben incluir pausas cuando sea necesario para que el alumno pueda ver lo que ocurre.
-
-Ejemplo:
-
-```javascript
-await page.waitForTimeout(5000);
-```
-
----
-
-# Locators
-
-Un locator permite identificar un elemento dentro de una página.
-
-Ejemplo:
-
-```javascript
-page.locator('input[placeholder="Ingrese la contraseña"]');
-```
-
-También se aprendió a utilizar:
-
-```javascript
-page.getByText('Inicio');
-```
-
-y:
-
-```javascript
-page.getByRole('link', {
-    name: 'CONFIGURACIONES'
-});
-```
-
-La elección del locator debe hacerse pensando en estabilidad y legibilidad.
-
----
-
-# Selectores utilizados
-
-Durante las pruebas se utilizaron selectores basados en atributos reales del ERP.
-
-### Usuario
-
-```javascript
-page.locator('input[placeholder="Ingrese el nombre de usuario"]');
-```
-
-### Contraseña
-
-```javascript
-page.locator('input[placeholder="Ingrese la contraseña"]');
-```
-
-### Botón de inicio de sesión
-
-```javascript
-page.locator('button[type="submit"]');
-```
-
-Estos selectores fueron comprobados mediante ejecución real.
-
----
-
-# `fill()`
-
-Permite completar un campo.
-
-Ejemplo:
-
-```javascript
-await usuario.fill('admin');
-```
-
-Ejemplo de contraseña:
-
-```javascript
-await contraseña.fill('123');
-```
-
----
-
-# `click()`
-
-Permite hacer clic sobre un elemento.
-
-Ejemplo:
-
-```javascript
-await botonLogin.click();
-```
-
----
-
-# Assertions con `expect`
-
-Las assertions permiten comprobar que una condición esperada realmente se cumple.
-
-Ejemplo:
-
-```javascript
-await expect(usuario).toBeVisible();
-```
-
----
-
-## `toBeVisible()`
-
-Comprueba que un elemento sea visible.
-
-Ejemplo:
-
-```javascript
-await expect(configuraciones).toBeVisible();
-```
-
----
-
-## `toHaveURL()`
-
-Permite comprobar que la página llegó a una URL esperada.
-
-Ejemplo utilizado en el login del ERP:
-
-```javascript
-await expect(page).toHaveURL(/menu\.php/);
-```
-
----
-
-# Filosofía de selectores
-
-Se debe preferir identificar elementos mediante información estable.
-
-Ejemplos:
-
-```text
-Texto visible
-Atributos específicos
-Placeholder
-Role
-data-testid
-```
-
-Ejemplo de atributo estable recomendado:
-
-```html
-data-testid="Guardar-producto"
-```
-
-Se debe evitar depender únicamente de:
-
-- colores;
-- posiciones;
-- estilos;
-- clases CSS que puedan cambiar;
-- estructura visual que no tenga significado funcional.
-
-Todavía queda pendiente profundizar en selectores especialmente robustos y en el uso de `data-testid`.
-
----
-
-# Flujo de login del ERP
-
-El flujo automatizado actualmente es:
-
-```text
 1. Abrir la página del ERP.
-2. Esperar para poder observar la pantalla.
-3. Buscar el campo usuario.
-4. Verificar que el usuario sea visible.
-5. Escribir usuario.
-6. Buscar el campo contraseña.
-7. Verificar que la contraseña sea visible.
-8. Escribir contraseña.
-9. Buscar el botón Iniciar Sesión.
-10. Verificar que sea visible.
-11. Hacer clic.
-12. Verificar que la URL cambió a menu.php.
-13. Verificar que aparece "Inicio".
-```
+2. Esperar para observar.
+3. Buscar campo usuario.
+4. Escribir usuario.
+5. Buscar campo contraseña.
+6. Escribir contraseña.
+7. Buscar botón Iniciar Sesión.
+8. Hacer clic.
+9. Verificar URL menu.php.
+10. Verificar "Inicio" visible.
 
-Credenciales utilizadas durante el ejercicio local:
+Credenciales locales: admin / 123.
 
-```text
-Usuario: admin
-Contraseña: 123
-```
+## Tests realizados
 
-Estas credenciales corresponden al entorno local de práctica.
+### Test 1 - Abrir página (tests/primer_test.spec.js)
+Abre Google. Resultado: 1 passed.
 
----
+### Test 2 - Buscar elemento (tests/segundo_test.spec.js)
+Practica localización, fill, press, assertions. Documenta detección de tráfico inusual por Google.
 
-# Validación real del login
+### Test 3 - Completar formulario (tests/tercer_test.spec.js)
+Usa page.setContent(), getByLabel, fill, expect, toHaveValue. Resultado: 1 passed.
 
-El login real del ERP fue automatizado en:
+### Test 4 - Buscar elemento por texto (tests/cuarto_test.spec.js)
+Usa getByText('Iniciar sesión') y toBeVisible. Resultado: 1 passed.
 
-```text
-tests/quinto_test.spec.js
-```
+### Test 5 - Login real del ERP (tests/quinto_test.spec.js)
+Selectores por placeholder y button[type="submit"]. Resultado: 1 passed.
 
-La prueba verifica:
+### Test 6 - Localizar Configuraciones (tests/sexto_test.spec.js)
+Usa getByRole('link', { name: 'CONFIGURACIONES' }). Resultado: 1 passed.
 
-```text
-Login
-  ↓
-Usuario
-  ↓
-Contraseña
-  ↓
-Iniciar Sesión
-  ↓
-menu.php
-  ↓
-Inicio visible
-```
+Aprendizaje: no se puede abrir menu.php directamente sin sesión.
 
-La prueba fue ejecutada correctamente en modo headed.
+## Errores documentados
 
-Resultado:
+1. Navegadores de Playwright no instalados → npx playwright install.
+2. Google detectó tráfico inusual → preferir ERP local.
+3. Selector incorrecto en Test 6 → volver al selector comprobado del Test 5.
+4. Acceso directo a menu.php sin sesión → respetar precondiciones.
 
-```text
-1 passed
-```
+## Roadmap
 
----
-
-# Test 1 - Abrir página
-
-Archivo:
-
-```text
-tests/primer_test.spec.js
-```
-
-Objetivo:
-
-Comprobar que Playwright puede abrir una página.
-
-Código:
-
-```javascript
-const { test } = require('@playwright/test');
-
-test('Abrir página', async ({ page }) => {
-
-    await page.goto('https://www.google.com');
-
-});
-```
-
-Resultado:
-
-```text
-1 passed
-```
-
----
-
-# Test 2 - Buscar elemento
-
-Archivo:
-
-```text
-tests/segundo_test.spec.js
-```
-
-Objetivo:
-
-Practicar:
-
-- localización de elementos;
-- `fill()`;
-- `press()`;
-- assertions;
-- observación de resultados.
-
-Se trabajó inicialmente con Google.
-
-Durante el ejercicio apareció una comprobación de tráfico inusual de Google.
-
-Esto permitió documentar un comportamiento real que puede afectar pruebas automatizadas cuando se utilizan sitios externos.
-
-El ejercicio finalmente permitió comprobar correctamente la interacción con el elemento.
-
----
-
-# Test 3 - Completar formulario
-
-Archivo:
-
-```text
-tests/tercer_test.spec.js
-```
-
-Objetivo:
-
-Practicar la interacción con campos de formulario.
-
-Se creó una página de prueba local mediante:
-
-```javascript
-page.setContent()
-```
-
-El formulario contiene:
-
-```text
-Nombre
-Correo
-```
-
-Se utilizaron:
-
-```javascript
-getByLabel()
-fill()
-expect()
-toHaveValue()
-```
-
-Ejemplo:
-
-```javascript
-const nombre = page.getByLabel('Nombre');
-const correo = page.getByLabel('Correo');
-
-await nombre.fill('José');
-await correo.fill('jose@gmail.com');
-
-await expect(nombre).toHaveValue('José');
-await expect(correo).toHaveValue('jose@gmail.com');
-```
-
-Resultado:
-
-```text
-1 passed
-```
-
----
-
-# Test 4 - Buscar elemento por texto
-
-Archivo:
-
-```text
-tests/cuarto_test.spec.js
-```
-
-Objetivo:
-
-Aprender a localizar un elemento utilizando texto visible.
-
-Se creó una página local de prueba:
-
-```html
-<h1>Sistema ERP</h1>
-<button>Iniciar sesión</button>
-```
-
-Se utilizó:
-
-```javascript
-page.getByText('Iniciar sesión')
-```
-
-Y se verificó:
-
-```javascript
-await expect(boton).toBeVisible();
-```
-
-Resultado:
-
-```text
-1 passed
-```
-
----
-
-# Test 5 - Login real del ERP
-
-Archivo:
-
-```text
-tests/quinto_test.spec.js
-```
-
-Objetivo:
-
-Automatizar el login real del ERP local.
-
-Flujo:
-
-```text
-Abrir ERP
-   ↓
-Buscar usuario
-   ↓
-Escribir admin
-   ↓
-Buscar contraseña
-   ↓
-Escribir 123
-   ↓
-Buscar botón
-   ↓
-Clic en Iniciar Sesión
-   ↓
-Verificar menu.php
-   ↓
-Verificar Inicio
-```
-
-Selectors comprobados:
-
-```javascript
-const usuario = page.locator(
-    'input[placeholder="Ingrese el nombre de usuario"]'
-);
-
-const contraseña = page.locator(
-    'input[placeholder="Ingrese la contraseña"]'
-);
-
-const botonLogin = page.locator(
-    'button[type="submit"]'
-);
-```
-
-Assertions:
-
-```javascript
-await expect(usuario).toBeVisible();
-
-await expect(contraseña).toBeVisible();
-
-await expect(botonLogin).toBeVisible();
-
-await expect(page).toHaveURL(/menu\.php/);
-
-await expect(page.getByText('Inicio')).toBeVisible();
-```
-
-Resultado:
-
-```text
-1 passed
-```
-
-Este test constituye el primer flujo completo y real del ERP dentro del proyecto.
-
----
-
-# Test 6 - Localizar Configuraciones
-
-Archivo:
-
-```text
-tests/sexto_test.spec.js
-```
-
-Objetivo:
-
-Practicar un locator mediante `getByRole()` sobre el menú real del ERP.
-
-Después de realizar el login, se localiza:
-
-```text
-CONFIGURACIONES
-```
-
-mediante:
-
-```javascript
-const configuraciones = page.getByRole('link', {
-    name: 'CONFIGURACIONES'
-});
-```
-
-Y se comprueba:
-
-```javascript
-await expect(configuraciones).toBeVisible();
-```
-
-Resultado:
-
-```text
-1 passed
-```
-
-## Aprendizaje importante del Test 6
-
-Se comprobó que no es correcto asumir que una URL interna como:
-
-```text
-http://localhost/sysayg/menu.php
-```
-
-puede abrirse directamente sin sesión.
-
-Cuando se intentó hacerlo, el ERP mostró errores PHP relacionados con la falta de sesión.
-
-Por lo tanto, el flujo correcto para este ejercicio fue:
-
-```text
-Abrir login
-   ↓
-Completar login
-   ↓
-Entrar al menú
-   ↓
-Localizar CONFIGURACIONES
-```
-
-También se comprobó que los selectores del login deben mantenerse exactamente como fueron validados en el Test 5.
-
----
-
-# Errores reales documentados
-
-## Error 1 - Navegadores de Playwright
-
-Problema:
-
-Playwright no tenía instalados los ejecutables del navegador.
-
-Solución:
-
-```bash
-npx playwright install
-```
-
----
-
-## Error 2 - Google detectó tráfico inusual
-
-Durante una prueba sobre Google apareció una comprobación de que el tráfico provenía de un posible robot.
-
-Aprendizaje:
-
-Los sitios externos pueden introducir mecanismos que afectan las pruebas automatizadas.
-
-Por eso, para el proyecto profesional se priorizará el ERP local y aplicaciones bajo nuestro control.
-
----
-
-## Error 3 - Selector incorrecto durante Test 6
-
-Durante el desarrollo del Test 6 se utilizó inicialmente:
-
-```javascript
-input[name="usuario"]
-```
-
-Ese selector no encontraba el campo.
-
-El Test 5 ya había demostrado que el selector correcto era:
-
-```javascript
-input[placeholder="Ingrese el nombre de usuario"]
-```
-
-Se volvió al selector comprobado y el Test 6 pasó correctamente.
-
-Aprendizaje:
-
-> No modificar una solución que ya fue comprobada sin una razón concreta.
-
-Ante un error, primero se debe comparar con el flujo que ya funciona.
-
----
-
-## Error 4 - Acceso directo a menu.php
-
-Se intentó abrir directamente:
-
-```text
-http://localhost/sysayg/menu.php
-```
-
-sin realizar login.
-
-El ERP mostró errores PHP y no cargó correctamente el menú.
-
-Aprendizaje:
-
-El menú depende de una sesión autenticada.
-
-La automatización debe respetar las precondiciones del sistema.
-
----
-
-# Git y versionado del proyecto
-
-Los avances de los Tests 1 a 6 fueron guardados mediante Git.
-
-Se realizaron commits y `push` al repositorio remoto.
-
-El estado del repositorio fue comprobado mediante:
-
-```bash
-git status
-```
-
-Y se obtuvo:
-
-```text
-nothing to commit, working tree clean
-```
-
-El Test 6 también fue enviado correctamente a GitHub.
-
----
-
-# Roadmap
-
-## Completado
+### Completado
 
 - [x] Conceptos de QA Automation
 - [x] QA Manual vs Automation
-- [x] Git
-- [x] GitHub
-- [x] Clonado del repositorio
-- [x] Node.js
-- [x] npm
-- [x] package.json
-- [x] package-lock.json
-- [x] node_modules
-- [x] .gitignore
-- [x] Instalación de Playwright
-- [x] Instalación de navegadores
-- [x] Primer test
-- [x] Headless
-- [x] Headed
-- [x] Locators básicos
-- [x] Buscar elementos por texto
-- [x] `getByText()`
-- [x] `getByLabel()`
-- [x] `getByRole()`
-- [x] `fill()`
-- [x] `click()`
-- [x] `press()`
-- [x] Assertions con `expect`
-- [x] `toBeVisible()`
-- [x] `toHaveValue()`
-- [x] `toHaveURL()`
-- [x] Login real del ERP
-- [x] Verificación del menú principal
-- [x] Primer locator aplicado al menú real del ERP
-- [x] Git add / commit / push de los tests
-- [x] Documentación de errores reales
+- [x] Git y GitHub
+- [x] Node.js, npm, package.json
+- [x] .gitignore y node_modules
+- [x] Instalación de Playwright y navegadores
+- [x] Tests 1-6 (básicos)
+- [x] Test 7 - data-testid y caso negativo
+- [x] Test 8 - storageState y reutilización de sesión
+- [x] Test 9 - Page Object Model
+- [x] Test 10 - Datos de prueba con .env
 
-## Próximos pasos
+### Próximos pasos
 
-- [ ] Documentar/ajustar configuración de Playwright
-- [ ] Selectores estables y robustos
-- [ ] `data-testid`
-- [ ] Mejorar la estrategia de locators
-- [ ] Casos positivos y negativos
-- [ ] Login inválido
-- [ ] Validación de mensajes de error
-- [ ] Reutilización del login
-- [ ] Fixtures
-- [ ] Page Object Model
-- [ ] Datos de prueba
 - [ ] Capturas y evidencias
-- [ ] Reportes
-- [ ] Organización profesional
+- [ ] Reportes personalizados
 - [ ] Automatización de módulos del ERP
 - [ ] Pruebas CRUD
 - [ ] Pruebas de permisos
+- [ ] GitHub Actions (CI/CD)
 - [ ] Proyecto final para portfolio
 
----
+## Punto exacto de continuación
 
-# Punto exacto de continuación
-
-Los Tests 1 a 6 están funcionando y documentados.
-
-El proyecto ya pasó de ejercicios simples de Playwright a una primera automatización real sobre el ERP.
-
-El último ejercicio completado fue:
-
-```text
-Test 6 - Localizar Configuraciones
-```
+Los Tests 1 a 10 están funcionando y documentados. El último ejercicio completado fue: Test 10 - Datos de prueba parametrizados.
 
 No volver a instalar Git, Node.js, npm ni Playwright salvo que el alumno lo solicite.
----
 
-## ✅ Test 07 - Selectores robustos con data-testid
+Las ejecuciones en modo headed deben mantener pausas suficientes para que el alumno pueda observar la ejecución en pantalla.
 
-**Fecha:** 2026-09-12  
-**Archivo:** `tests/septimo_test.spec.js`  
-**URL probada:** http://localhost/sysayg/index.php
+## Test 07 - Selectores robustos con data-testid
 
-### 🎯 Objetivo
-Reemplazar selectores frágiles (placeholder, texto, clases CSS) por atributos `data-testid`, que no se rompen si cambia el diseño, el texto o los estilos.
+Fecha: 2026-09-12
+Archivo: tests/septimo_test.spec.js
+URL: http://localhost/sysayg/index.php
 
-### 🧠 Conceptos aprendidos
-- Uso de `page.getByTestId()` en Playwright.
-- Añadir atributos `data-testid` al HTML del ERP.
-- En menús dinámicos generados en bucle PHP, construir el `data-testid` con un slug derivado del nombre.
-- Distinguir entre módulos (`modulo-*`) y páginas (`menu-*`) en el sidebar.
-- Escribir un caso negativo (login fallido) además del positivo.
-- Configurar `playwright.config.js` con `slowMo` para depuración visual.
+Objetivo: reemplazar selectores frágiles por data-testid.
 
-### 🛠️ Cambios aplicados en el ERP (`sysayg`)
-- **`index.php`**: se añadieron `data-testid` a usuario, contraseña y botón de login.
-- **`tools/aside.php`**: se añadió `data-testid` dinámico:
-  - Módulos: `modulo-<slug>` (ej. `modulo-configuraciones`)
-  - Páginas: `menu-<slug>` (ej. `menu-usuarios`)
+Conceptos aprendidos:
+- page.getByTestId()
+- data-testid en el HTML del ERP
+- slug dinámico en PHP para data-testid
+- Módulos (modulo-*) vs páginas (menu-*)
+- Casos positivos y negativos
+- slowMo en playwright.config.js
 
-### 🧪 Casos cubiertos
-1. **Positivo**: login con credenciales válidas → verifica redirección a `menu.php` y visibilidad de módulos.
-2. **Negativo**: login con credenciales inválidas → verifica que NO redirige y aparece alerta SweetAlert2.
+Cambios en el ERP:
+- index.php: data-testid en login-username, login-password, login-submit
+- tools/aside.php: data-testid dinámico modulo-<slug> y menu-<slug>
 
-### ▶️ Comando de ejecución
-```bash
-npx playwright test tests/septimo_test.spec.js --headed
-Se utilizó:
+Casos:
+1. Login exitoso con credenciales válidas.
+2. Login fallido con credenciales inválidas.
 
-```javascript
-page.getByRole('link', {
-    name: 'CONFIGURACIONES'
-});
-```
+Comando: npx playwright test tests/septimo_test.spec.js --headed
+Resultado: 2 passed.
 
-y:
+## Test 08 - Reutilización de sesión con storageState
 
-```javascript
-await expect(configuraciones).toBeVisible();
-```
+Fecha: 2026-09-14
+Archivos: tests/auth.setup.js, tests/octavo_test.spec.js, playwright.config.js
 
-## Próximo objetivo
+Objetivo: evitar repetir login en cada test.
 
-El siguiente objetivo será continuar profundizando en **selectores estables y robustos**.
+Conceptos:
+- Fixtures de Playwright
+- storageState
+- Proyectos setup + chromium con dependencies
+- testMatch
+- Renombrar con ":" en destructuring JS
 
-Después se avanzará hacia:
+Archivos:
+- Nuevo tests/auth.setup.js
+- Nuevo tests/octavo_test.spec.js
+- Modificado playwright.config.js
+- Modificado .gitignore con /playwright/.auth/
 
-```text
-Selectores robustos
-        ↓
-Casos positivos y negativos
-        ↓
-Reutilización del login
-        ↓
-Fixtures
-        ↓
-Page Object Model
-        ↓
-Datos de prueba
-        ↓
-Automatización de módulos del ERP
-        ↓
-Reportes y evidencias
-        ↓
-Proyecto final de portfolio
-```
+Casos:
+1. Sesión guardada permite entrar directo al menú.
+2. Navegar a configuraciones sin re-autenticarse.
 
-No se debe volver a instalar Git, Node.js, npm ni Playwright salvo que el alumno lo solicite.
+Comando: npx playwright test tests/octavo_test.spec.js --headed
+Resultado: 3 passed (1 setup + 2 tests).
 
-No se debe repetir un concepto que ya fue completado, salvo que sea necesario para comprender un concepto nuevo.
+## Test 09 - Page Object Model (POM)
 
-Cuando un test ya funciona, se debe tomar como referencia antes de realizar cambios en pruebas posteriores.
+Fecha: 2026-09-15
+Archivos: pages/LoginPage.js, pages/MenuPage.js, tests/noveno_test.spec.js
 
-Las ejecuciones en modo `headed` deben mantener pausas suficientes para que el alumno pueda observar la ejecución en pantalla.
----
+Objetivo: separar lógica de páginas de lógica de tests.
 
-## ✅ Test 08 - Reutilización de sesión con storageState
+Conceptos:
+- POM
+- Constructor con locators
+- Métodos de acción
+- module.exports
+- require('../pages/X')
+- Separación de responsabilidades
 
-**Fecha:** 2026-09-14  
-**Archivos:** 
-- `tests/auth.setup.js` (setup de login)
-- `tests/octavo_test.spec.js` (tests que reutilizan la sesión)
-- `playwright.config.js` (configuración de proyectos: setup + chromium)
+Estructura:
+pages/
+├── LoginPage.js
+└── MenuPage.js
+tests/
+└── noveno_test.spec.js
 
-### 🎯 Objetivo
-Evitar repetir el login en cada test, guardando la sesión una sola vez y reutilizándola en todos los tests posteriores.
-
-### 🧠 Conceptos aprendidos
-- **Fixtures de Playwright**: código de preparación (setup) que se ejecuta antes de los tests.
-- **`storageState`**: mecanismo de Playwright para guardar y reutilizar cookies, localStorage y sessionStorage.
-- **Proyectos en `playwright.config.js`**: separar un proyecto `setup` que corre primero, y un proyecto `chromium` que depende de él (`dependencies: ['setup']`).
-- **`testMatch`**: filtro para que un proyecto solo ejecute ciertos archivos.
-- **Renombrar en destructuring JS**: `const { test: setup } = require(...)` (con `:` en JS, no con `as`).
-
-### 🛠️ Archivos creados/modificados
-- **Nuevo** `tests/auth.setup.js`: hace login, verifica URL y guarda sesión en `playwright/.auth/user.json`.
-- **Nuevo** `tests/octavo_test.spec.js`: 2 tests que abren `menu.php` directamente sin volver a loguearse.
-- **Modificado** `playwright.config.js`: se agregó proyecto `setup` + `storageState` + `dependencies`.
-- **Modificado** `.gitignore`: se agregó `/playwright/.auth/` para no subir la sesión a GitHub.
-
-### 🧪 Casos cubiertos
-1. Verificar que la sesión guardada permite entrar directo al menú sin login.
-2. Navegar al módulo de configuraciones sin re-autenticarse.
-
-### ⚠️ Mala práctica temporal
-Se usó `page.waitForTimeout()` en los tests **solo para observación en clase**. En proyectos reales debe evitarse porque hace lento el suite sin aportar valor funcional.
-
-### ▶️ Comando de ejecución
-```bash
-npx playwright test tests/octavo_test.spec.js --headed
-
----
-
-## ✅ Test 09 - Page Object Model (POM)
-
-**Fecha:** 2026-09-15  
-**Archivos:** 
-- `pages/LoginPage.js` (nuevo)
-- `pages/MenuPage.js` (nuevo)
-- `tests/noveno_test.spec.js` (nuevo)
-
-### 🎯 Objetivo
-Refactorizar los tests aplicando el patrón de diseño **Page Object Model (POM)**, separando la lógica de las páginas de la lógica de los tests.
-
-### 🧠 Conceptos aprendidos
-- **POM (Page Object Model)**: patrón donde cada página del sistema se representa con una clase que encapsula sus selectores y acciones.
-- **Constructor**: método que se ejecuta al crear un objeto y guarda los locators como propiedades.
-- **Métodos de acción**: funciones dentro de la clase que realizan acciones (login, goto, verificar).
-- **`module.exports`**: exportar la clase para usarla con `require()` en otros archivos.
-- **`require('../pages/X')`**: importar clases desde carpetas hermanas.
-- **Separación de responsabilidades**: tests = qué probar; pages = cómo interactuar con la UI.
-
-### 🛠️ Estructura creada
-playwright-erp-automation/
-├── pages/
-│ ├── LoginPage.js ← clase del login
-│ └── MenuPage.js ← clase del menú
-└── tests/
-└── noveno_test.spec.js ← test que usa las clases
-
-text
-
-### 📋 Ejemplo comparativo
-
-**Antes (Test 07):**
-```javascript
+Antes (Test 07):
 await page.goto('http://localhost/sysayg/index.php');
 await page.getByTestId('login-username').fill('admin');
 await page.getByTestId('login-password').fill('123');
 await page.getByTestId('login-submit').click();
-await expect(page).toHaveURL(/menu\.php/);
-Después (Test 09 con POM):
 
-javascript
+Después (Test 09):
 const loginPage = new LoginPage(page);
 await loginPage.goto();
 await loginPage.login('admin', '123');
-await expect(page).toHaveURL(/menu\.php/);
-🧪 Casos cubiertos
-Login usando LoginPage.
 
-Verificar módulos visibles usando MenuPage.
+Casos:
+1. Login usando LoginPage.
+2. Verificar módulos con MenuPage.
+3. Navegar al menú con ambas clases.
 
-Navegar al menú usando ambas clases.
+Comando: npx playwright test tests/noveno_test.spec.js --headed
+Resultado: 4 passed.
 
-▶️ Comando de ejecución
-bash
-npx playwright test tests/noveno_test.spec.js --headed
-✅ Resultado
-4 tests passed (1 setup + 3 tests).
+Valor para el portfolio: el POM es el patrón más pedido en QA Automation.
 
-💼 Valor para el portfolio
-El POM es el patrón de diseño más pedido en ofertas de QA Automation. Dominarlo demuestra madurez técnica.
+## Test 10 - Datos de prueba parametrizados
+
+Fecha: 2026-10-11
+Archivos: .env, .env.example, playwright.config.js, tests/auth.setup.js, tests/noveno_test.spec.js, pages/LoginPage.js, pages/MenuPage.js, tests/decimo_test.spec.js, .gitignore
+
+Objetivo: externalizar URLs y credenciales fuera del código.
+
+Conceptos:
+- Variables de entorno con process.env
+- dotenv
+- .env (no se sube) vs .env.example (sí se sube)
+- baseURL en playwright.config.js
+- Regla de concatenación de URLs: si baseURL termina en "/" concatena, si no, reemplaza la última parte.
+
+Error documentado - URL mal formada:
+
+Síntoma: tests fallaban con 404 en http://localhost/index.php (faltaba /sysayg).
+
+Causa:
+- baseURL = "http://localhost/sysayg" + "index.php" → http://localhost/index.php (mal)
+- baseURL = "http://localhost/sysayg/" + "index.php" → http://localhost/sysayg/index.php (bien)
+
+Solución: agregar "/" al final del BASE_URL en .env.
+
+Aprendizaje: las URLs de Playwright siguen el estándar RFC 3986.
+
+Estructura del .env:
+BASE_URL=http://localhost/sysayg/
+TEST_USER=admin
+TEST_PASSWORD=***
+INVALID_USER=usuario_que_no_existe_xyz
+INVALID_PASSWORD=clave_incorrecta_123
+
+Casos en decimo_test.spec.js:
+1. Login exitoso con variables de entorno.
+2. Login fallido con credenciales inválidas.
+3. Verificación de baseURL con rutas relativas.
+
+Comando: npx playwright test tests/decimo_test.spec.js --headed
+Resultado: 4 passed.
+
+Valor para el portfolio: manejo profesional de credenciales y múltiples entornos.

@@ -7,11 +7,9 @@ test.describe('Test 09 - Page Object Model (POM)', () => {
   test('Login usando LoginPage (POM)', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-    // Ir al login y autenticarse
     await loginPage.goto();
-    await loginPage.login('admin', '123');
+    await loginPage.login(process.env.TEST_USER, process.env.TEST_PASSWORD);
 
-    // Verificar que llegamos al menú
     await expect(page).toHaveURL(/menu\.php/);
     await page.waitForTimeout(1500);
   });
@@ -20,12 +18,10 @@ test.describe('Test 09 - Page Object Model (POM)', () => {
     const loginPage = new LoginPage(page);
     const menuPage = new MenuPage(page);
 
-    // Login previo
     await loginPage.goto();
-    await loginPage.login('admin', '123');
+    await loginPage.login(process.env.TEST_USER, process.env.TEST_PASSWORD);
     await expect(page).toHaveURL(/menu\.php/);
 
-    // Verificar módulos usando la clase MenuPage
     await menuPage.verificarModuloVisible('modulo-configuraciones');
     await page.waitForTimeout(1000);
 
@@ -40,15 +36,12 @@ test.describe('Test 09 - Page Object Model (POM)', () => {
     const loginPage = new LoginPage(page);
     const menuPage = new MenuPage(page);
 
-    // Login
     await loginPage.goto();
-    await loginPage.login('admin', '123');
+    await loginPage.login(process.env.TEST_USER, process.env.TEST_PASSWORD);
 
-    // Ir directo a menu.php
     await menuPage.goto();
     await page.waitForTimeout(1000);
 
-    // Verificar que seguimos en el menú (gracias a la sesión activa)
     await expect(page).toHaveURL(/menu\.php/);
     await menuPage.verificarModuloVisible('modulo-configuraciones');
     await page.waitForTimeout(2000);
