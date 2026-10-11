@@ -1,6 +1,9 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
 
+// Cargar variables de entorno desde .env
+require('dotenv').config();
+
 module.exports = defineConfig({
   testDir: './tests',
   fullyParallel: false,
@@ -9,6 +12,7 @@ module.exports = defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: 'html',
   use: {
+    baseURL: process.env.BASE_URL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

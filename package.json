@@ -23,5 +23,8 @@
   "homepage": "https://github.com/jedumen1992-gif/playwright-erp-automation#readme",
   "devDependencies": {
     "@playwright/test": "^1.61.1"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.7"
   }
 }

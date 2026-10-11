@@ -3,12 +3,12 @@ const { test: setup, expect } = require('@playwright/test');
 const authFile = 'playwright/.auth/user.json';
 
 setup('Autenticarse en el ERP', async ({ page }) => {
-  // 1. Ir al login
-  await page.goto('http://localhost/sysayg/index.php');
+  // 1. Ir al login (usando baseURL del config + ruta relativa)
+  await page.goto('index.php');
 
-  // 2. Completar credenciales reales
-  await page.getByTestId('login-username').fill('admin');
-  await page.getByTestId('login-password').fill('123');
+  // 2. Completar credenciales (leídas desde .env)
+  await page.getByTestId('login-username').fill(process.env.TEST_USER);
+  await page.getByTestId('login-password').fill(process.env.TEST_PASSWORD);
   await page.getByTestId('login-submit').click();
 
   // 3. Verificar que el login fue exitoso

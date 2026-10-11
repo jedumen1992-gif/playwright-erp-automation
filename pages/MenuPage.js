@@ -15,9 +15,9 @@ class MenuPage {
   // === Acciones ===
 
   // Ir directo al menú
-  async goto() {
-    await this.page.goto('http://localhost/sysayg/menu.php');
-  }
+ async goto() {
+    await this.page.goto('menu.php');
+}
 
   // Ir a una página específica del menú (por data-testid)
   async irAPagina(testId) {

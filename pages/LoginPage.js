@@ -14,9 +14,9 @@ class LoginPage {
   // === Acciones ===
 
   // Ir a la página de login
-  async goto() {
-    await this.page.goto('http://localhost/sysayg/index.php');
-  }
+async goto() {
+    await this.page.goto('index.php');
+}
 
   // Completar usuario y contraseña
   async fillCredentials(username, password) {
